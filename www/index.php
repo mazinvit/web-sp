@@ -1,6 +1,8 @@
 <?php
     define('ROOT',dirname(__FILE__). '/../');
 
+    session_start();
+
     require ROOT."Controller.php";
 
     $controller = new Controller();

@@ -39,7 +39,14 @@
             </button>
             <a class="navbar-brand" href="#">Project name</a>
         </div>
-
+        {% if session.uzivatel is defined %}
+        <div id="navbar" class="navbar-collapse collapse">
+            <form class="navbar-form navbar-right" action="{{ makeURL('signout') }}" method="post">
+                <p style="color:white;">{{ session.uzivatel.login }}</p>
+                <button type="submit" class="btn btn-success">Sign out</button>
+            </form>
+        </div>
+        {% else %}
         <div id="navbar" class="navbar-collapse collapse">
             <form class="navbar-form navbar-right" action="{{ makeURL('signin') }}" method="post">
                 <div class="form-group">
@@ -51,6 +58,7 @@
                 <button type="submit" class="btn btn-success">Sign in</button>
             </form>
         </div>
+        {% endif %}
     </div>
 </nav>
 
