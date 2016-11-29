@@ -1,0 +1,15 @@
+{% extends 'templates/template.twig' %}
+{% block title %}Registrace{% endblock %}
+{% block content %}
+    <h2>Registrace</h2>
+    <div class="form-group">
+        <form action="{{ makeURL('register') }}" method="post">
+            <input type="text" class="form-control" placeholder="login" name="reg[login]"><br>
+            <input type="text" class="form-control" placeholder="jméno" name="reg[jmeno]"><br>
+            <input type="password" class="form-control" placeholder="heslo" name="reg[pass1]"><br>
+            <input type="password" class="form-control" placeholder="heslo znovu" name="reg[pass2]"><br>
+            <input type="text" class="form-control" placeholder="email" name="reg[email]"><br>
+            <button type="submit" class="form-control" >Registrovat</button>
+        </form>
+    </div>
+{% endblock %}
