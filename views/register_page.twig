@@ -2,7 +2,7 @@
 {% block title %}Registrace{% endblock %}
 {% block content %}
     <h2>Registrace</h2>
-    <div class="form-group">
+    <div class="form-group col-md-6 col-md-offset-3 col-xs-12">
         <form action="{{ makeURL('register') }}" method="post">
             <input type="text" class="form-control" placeholder="login" name="reg[login]"><br>
             <input type="text" class="form-control" placeholder="jméno" name="reg[jmeno]"><br>

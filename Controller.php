@@ -94,7 +94,6 @@ class Controller
                 $this->modelUser = new UserModel();
             }
 
-            //$this->modelRegister = new RegisterModel();
             if($this->modelUser->zaregistruj($reg)) {
                 $this->redirection("okregister");
             }
