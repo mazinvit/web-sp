@@ -8,9 +8,9 @@
  */
 class UserModel extends Model
 {
-    public function zaregistruj($reg) {
+    public function registrate($reg) {
         $prava = 3;
-        if($this->validace($reg)) {
+        if($this->validation($reg)) {
             $q = $this->db->prepare("INSERT INTO `uzivatele` (login, pass, jmeno, email, prava) 
                                      VALUES (:login, :pass, :jmeno, :email, :prava)");
             $q->bindParam(':login', htmlspecialchars(stripslashes($reg['login']), ENT_QUOTES, 'UTF-8'));
@@ -32,7 +32,7 @@ class UserModel extends Model
         }
     }
 
-    public function autorizuj($login, $password) {
+    public function authorization($login, $password) {
         $usr = $this->selectUser($login, $password);
         $data = $usr[0];
 
@@ -47,9 +47,9 @@ class UserModel extends Model
         }
     }
 
-    private function validace($reg) {
+    private function validation($reg) {
         if(!empty($reg)) {
-            if($reg['pass1'] == $reg['pass2'] AND !$this->jeVDB($reg)) {
+            if($reg['pass1'] == $reg['pass2'] AND !$this->inDB($reg)) {
                 return true;
             }
 
@@ -63,7 +63,7 @@ class UserModel extends Model
         }
     }
 
-    private function jeVDB($reg) {
+    private function inDB($reg) {
         $q = $this->db->prepare("SELECT `id` FROM `uzivatele` WHERE `login` = :login");
         $q->bindParam(':login', $reg['login']);
         $q->execute();
@@ -89,6 +89,35 @@ class UserModel extends Model
 
         else {
             return null;
+        }
+    }
+
+    public function selectAllUsers() {
+        $q = $this->db->prepare("SELECT * FROM `uzivatele` ORDER BY `login` ASC");
+        $q->execute();
+
+        if($q->rowCount() != 0) {
+            return $q->fetchAll();
+        }
+
+        else {
+            return null;
+        }
+    }
+
+    public function isAdmin() {
+        if(isset($_SESSION['uzivatel'])) {
+            if($_SESSION['uzivatel']['prava'] == 1) {
+                return true;
+            }
+
+            else {
+                return false;
+            }
+        }
+
+        else {
+            return false;
         }
     }
 }

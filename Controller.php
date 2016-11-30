@@ -53,6 +53,42 @@ class Controller
         echo $this->twig->render('errorregister.twig');
     }
 
+    public function login_page() {
+        echo $this->twig->render('login_page.twig');
+    }
+
+    public function administration() {
+        if($this->modelUser == null) {
+            $this->modelUser = new UserModel();
+        }
+
+        if($this->modelUser->isAdmin()) {
+            echo $this->twig->render('administration/administration.twig');
+        }
+
+        else {
+            $this->redirection();
+        }
+    }
+
+    public function user_administration() {
+        if($this->modelUser == null) {
+            $this->modelUser = new UserModel();
+        }
+
+        $arr = $this->modelUser->selectAllUsers();
+
+        if ($arr != null) {
+            $template = $this->twig->loadTemplate('administration/user_administration.twig');
+            $params['users'] = $arr;
+            echo $template->render($params);
+        }
+
+        else {
+            $this->redirection("administration");
+        }
+    }
+
     public function signin() {
 
         if(isset($_POST['uzivatel'])) {
@@ -65,7 +101,7 @@ class Controller
             $login = stripslashes($uzivatel['login']);
             $pwd = stripslashes($uzivatel['heslo']);
 
-            $retUzivatel = $this->modelUser->autorizuj($login, $pwd);
+            $retUzivatel = $this->modelUser->authorization($login, $pwd);
 
             if($retUzivatel != null) {
                 $_SESSION['uzivatel'] = $retUzivatel;
@@ -94,7 +130,7 @@ class Controller
                 $this->modelUser = new UserModel();
             }
 
-            if($this->modelUser->zaregistruj($reg)) {
+            if($this->modelUser->registrate($reg)) {
                 $this->redirection("okregister");
             }
 
