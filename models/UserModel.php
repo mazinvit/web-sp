@@ -13,10 +13,10 @@ class UserModel extends Model
         if($this->validace($reg)) {
             $q = $this->db->prepare("INSERT INTO `uzivatele` (login, pass, jmeno, email, prava) 
                                      VALUES (:login, :pass, :jmeno, :email, :prava)");
-            $q->bindParam(':login', stripslashes($reg['login']));
-            $q->bindParam(':pass', sha1(stripslashes($reg['pass1'])));
-            $q->bindParam(':jmeno', stripslashes($reg['jmeno']));
-            $q->bindParam(':email', stripslashes($reg['email']));
+            $q->bindParam(':login', htmlspecialchars(stripslashes($reg['login']), ENT_QUOTES, 'UTF-8'));
+            $q->bindParam(':pass',  sha1(htmlspecialchars(stripslashes($reg['pass1']),  ENT_QUOTES, 'UTF-8')));
+            $q->bindParam(':jmeno', htmlspecialchars(stripslashes($reg['jmeno']), ENT_QUOTES, 'UTF-8'));
+            $q->bindParam(':email', htmlspecialchars(stripslashes($reg['email']), ENT_QUOTES, 'UTF-8'));
             $q->bindParam(':prava', $prava);
             if($q->execute()) {
                 return true;
@@ -79,7 +79,7 @@ class UserModel extends Model
 
     private function selectUser($login, $password) {
         $q = $this->db->prepare("SELECT * FROM `uzivatele` WHERE `login` = :login AND `pass` = :pass");
-        $q->bindParam(':login', $login);
+        $q->bindParam(':login', htmlspecialchars(stripslashes($login), ENT_QUOTES, 'UTF-8'));
         $q->bindParam(':pass', sha1($password));
         $q->execute();
 

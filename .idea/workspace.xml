@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d7f27030-3c74-46fc-acd5-6129b6377b8a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/models/UserModel.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/models/RegisterModel.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/models/SignInModel.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/web-sp.iml" afterPath="$PROJECT_DIR$/.idea/web-sp.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Controller.php" afterPath="$PROJECT_DIR$/Controller.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.php" afterPath="$PROJECT_DIR$/config.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/UserModel.php" afterPath="$PROJECT_DIR$/models/UserModel.php" />
     </list>
     <ignored path="web-sp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,7 +41,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Controller.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Controller.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Controller.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="195">
@@ -79,15 +73,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserModel.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="UserModel.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/models/UserModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="29" column="14" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
+            <state relative-caret-position="120">
+              <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
               <folding>
-                <marker date="1480505868000" expanded="true" signature="255:398" ph="INSERT INTO `uzivatele`... " />
-                <marker date="1480505868000" expanded="true" signature="1573:1624" ph="SELECT `id` uzivatele" />
-                <marker date="1480505868000" expanded="true" signature="1914:1981" ph="SELECT * FRO... uzivatele" />
+                <marker date="1480507485000" expanded="true" signature="255:398" ph="INSERT INTO `uzivatele`... " />
+                <marker date="1480507485000" expanded="true" signature="1731:1782" ph="SELECT `id` uzivatele" />
+                <marker date="1480507485000" expanded="true" signature="2072:2139" ph="SELECT * FRO... uzivatele" />
               </folding>
             </state>
           </provider>
@@ -128,9 +122,9 @@
         <option value="$PROJECT_DIR$/models/RegisterModel.php" />
         <option value="$PROJECT_DIR$/views/errorregister.twig" />
         <option value="$PROJECT_DIR$/views/okregister.twig" />
-        <option value="$PROJECT_DIR$/models/UserModel.php" />
         <option value="$PROJECT_DIR$/config.php" />
         <option value="$PROJECT_DIR$/Controller.php" />
+        <option value="$PROJECT_DIR$/models/UserModel.php" />
       </list>
     </option>
   </component>
@@ -302,12 +296,12 @@
       <workItem from="1480409629949" duration="5338000" />
       <workItem from="1480435756352" duration="11845000" />
       <workItem from="1480451215804" duration="20000" />
-      <workItem from="1480504906458" duration="1267000" />
+      <workItem from="1480504906458" duration="1881000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22006000" />
+    <option name="totallyTimeSpent" value="22620000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -701,18 +695,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/UserModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="29" column="14" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
-          <folding>
-            <marker date="1480505868000" expanded="true" signature="255:398" ph="INSERT INTO `uzivatele`... " />
-            <marker date="1480505868000" expanded="true" signature="1573:1624" ph="SELECT `id` uzivatele" />
-            <marker date="1480505868000" expanded="true" signature="1914:1981" ph="SELECT * FRO... uzivatele" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -727,6 +709,18 @@
           <caret line="13" column="18" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
           <folding>
             <element signature="e#7#89#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/UserModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
+          <folding>
+            <marker date="1480507485000" expanded="true" signature="255:398" ph="INSERT INTO `uzivatele`... " />
+            <marker date="1480507485000" expanded="true" signature="1731:1782" ph="SELECT `id` uzivatele" />
+            <marker date="1480507485000" expanded="true" signature="2072:2139" ph="SELECT * FRO... uzivatele" />
           </folding>
         </state>
       </provider>
