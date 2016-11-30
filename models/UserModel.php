@@ -33,7 +33,7 @@ class UserModel extends Model
     }
 
     public function authorization($login, $password) {
-        $usr = $this->selectUser($login, $password);
+        $usr = $this->selectUserByLoginAndPass($login, $password);
         $data = $usr[0];
 
         if($usr != null)
@@ -77,7 +77,7 @@ class UserModel extends Model
         }
     }
 
-    private function selectUser($login, $password) {
+    private function selectUserByLoginAndPass($login, $password) {
         $q = $this->db->prepare("SELECT * FROM `uzivatele` WHERE `login` = :login AND `pass` = :pass");
         $q->bindParam(':login', htmlspecialchars(stripslashes($login), ENT_QUOTES, 'UTF-8'));
         $q->bindParam(':pass', sha1($password));
@@ -89,6 +89,34 @@ class UserModel extends Model
 
         else {
             return null;
+        }
+    }
+
+    public function selectUserByID($id) {
+        $q = $this->db->prepare("SELECT * FROM `uzivatele` WHERE `id` = :id");
+        $q->bindParam(':id', htmlspecialchars(stripslashes($id), ENT_QUOTES, 'UTF-8'));
+        $q->execute();
+
+        if($q->rowCount() != 0) {
+            return $q->fetchAll();
+        }
+
+        else {
+            return null;
+        }
+    }
+
+    public function deleteUser($id) {
+        $q = $this->db->prepare("DELETE FROM `uzivatele` WHERE `id` = :id");
+        $q->bindParam(':id', htmlspecialchars(stripslashes($id), ENT_QUOTES, 'UTF-8'));
+        $ret = $q->execute();
+
+        if($ret == 0) {
+            return false;
+        }
+
+        else {
+            return true;
         }
     }
 

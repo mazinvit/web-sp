@@ -19,7 +19,7 @@
             if (empty($param)) {
                 $controller->{$page}();
             } else {
-                call_user_func_array([$controller, $page], $param);
+                call_user_func_array([$controller, $page], [$param]);
             }
         }
         else {

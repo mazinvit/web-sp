@@ -29,7 +29,7 @@ class Controller
         }
 
         else {
-            return "index.php?page=" . $stranka . "?param=" . $parametr;
+            return "index.php?page=" . $stranka . "&param=" . $parametr;
         }
     }
 
@@ -71,6 +71,28 @@ class Controller
         }
     }
 
+    public function bla($a = null) {
+        if($a == null) {
+            echo "param null";
+        }
+
+        else {
+            echo $a;
+        }
+    }
+
+    public function delete_user() {
+        if($this->modelUser == null) {
+            $this->modelUser = new UserModel();
+        }
+
+        $id = $_POST['id'];
+
+        $this->modelUser->deleteUser($id);
+
+        $this->redirection("user_administration");
+    }
+
     public function user_administration() {
         if($this->modelUser == null) {
             $this->modelUser = new UserModel();
@@ -86,6 +108,26 @@ class Controller
 
         else {
             $this->redirection("administration");
+        }
+    }
+
+    public function user_detail_administration() {
+        if($this->modelUser == null) {
+            $this->modelUser = new UserModel();
+        }
+
+        $id = $_POST['id'];
+
+        $user = $this->modelUser->selectUserByID($id)[0];
+
+        if($user != null) {
+            $template = $this->twig->loadTemplate('administration/user_detail_administration.twig');
+            $params['user'] = $user;
+            echo $template->render($params);
+        }
+
+        else {
+            $this->redirection("user_administration");
         }
     }
 
