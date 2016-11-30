@@ -7,16 +7,13 @@
  * Time: 10:07
  */
 
-require_once ROOT.'twig-master/lib/Twig/Autoloader.php';
-require_once ROOT.'models/SignInModel.php';
-require_once ROOT.'models/RegisterModel.php';
 require_once ROOT.'config.php';
 
 class Controller
 {
     private $twig;
-    private $modelSignIn;
-    private $modelRegister;
+    private $modelUser = null;
+
     public function __construct()
     {
         Twig_Autoloader::register();
@@ -57,14 +54,18 @@ class Controller
     }
 
     public function signin() {
-        $this->modelSignIn = new SignInModel();
 
         if(isset($_POST['uzivatel'])) {
+
+            if($this->modelUser == null) {
+                $this->modelUser = new UserModel();
+            }
+
             $uzivatel = $_POST['uzivatel'];
             $login = stripslashes($uzivatel['login']);
             $pwd = stripslashes($uzivatel['heslo']);
 
-            $retUzivatel = $this->modelSignIn->autorizuj($login, $pwd);
+            $retUzivatel = $this->modelUser->autorizuj($login, $pwd);
 
             if($retUzivatel != null) {
                 $_SESSION['uzivatel'] = $retUzivatel;
@@ -88,18 +89,23 @@ class Controller
     public function register() {
         if(isset($_POST['reg'])) {
             $reg = $_POST['reg'];
-            $this->modelRegister = new RegisterModel();
-            if($this->modelRegister->zaregistruj($reg)) {
+
+            if($this->modelUser == null) {
+                $this->modelUser = new UserModel();
+            }
+
+            //$this->modelRegister = new RegisterModel();
+            if($this->modelUser->zaregistruj($reg)) {
                 $this->redirection("okregister");
             }
 
             else {
-                $this->redirection("errorrregister");
+                $this->redirection("errorregister");
             }
         }
 
         else {
-            $this->redirection("errorrregister");
+            $this->redirection("errorregister");
         }
     }
 

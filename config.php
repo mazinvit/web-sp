@@ -4,3 +4,7 @@
     define('DB_USER', 'root');
     define('DB_PASS', 'heslo');
     define('DB_CHARSET', 'utf8');
+
+    require_once ROOT.'twig-master/lib/Twig/Autoloader.php';
+    require_once ROOT.'models/Model.php';
+    require_once ROOT.'models/UserModel.php';

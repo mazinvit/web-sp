@@ -2,14 +2,11 @@
 
 /**
  * Created by PhpStorm.
- * User: n5ver
- * Date: 29.11.2016
- * Time: 20:41
+ * User: vitmazin
+ * Date: 30.11.16
+ * Time: 12:35
  */
-
-require_once ROOT."models/Model.php";
-
-class RegisterModel extends Model
+class UserModel extends Model
 {
     public function zaregistruj($reg) {
         $prava = 3;
@@ -32,6 +29,21 @@ class RegisterModel extends Model
 
         else {
             return false;
+        }
+    }
+
+    public function autorizuj($login, $password) {
+        $usr = $this->selectUser($login, $password);
+        $data = $usr[0];
+
+        if($usr != null)
+        {
+            return $data;
+        }
+
+        else
+        {
+            return null;
         }
     }
 
@@ -62,6 +74,21 @@ class RegisterModel extends Model
 
         else {
             return false;
+        }
+    }
+
+    private function selectUser($login, $password) {
+        $q = $this->db->prepare("SELECT * FROM `uzivatele` WHERE `login` = :login AND `pass` = :pass");
+        $q->bindParam(':login', $login);
+        $q->bindParam(':pass', sha1($password));
+        $q->execute();
+
+        if($q->rowCount() != 0) {
+            return $q->fetchAll();
+        }
+
+        else {
+            return null;
         }
     }
 }
