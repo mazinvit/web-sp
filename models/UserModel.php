@@ -115,6 +115,15 @@ class UserModel extends Model
         $q->bindParam(":prava", $rights_esc);
         $q->bindParam(":id", $id_esc);
 
+        $ret = $q->execute();
+
+        if($ret == 0) {
+            return false;
+        }
+
+        else {
+            return true;
+        }
     }
 
     public function deleteUser($id) {

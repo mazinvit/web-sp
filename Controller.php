@@ -57,6 +57,12 @@ class Controller
         echo $this->twig->render('login_page.twig');
     }
 
+    public function after_change($changes) {
+        $template = $this->twig->loadTemplate('administration/after_change.twig');
+        $params['changes'] = $changes;
+        echo $template->render($params);
+    }
+
     public function administration() {
         if($this->modelUser == null) {
             $this->modelUser = new UserModel();
@@ -79,7 +85,13 @@ class Controller
         $id = $_POST['id'];
         $rights = $_POST['rights'];
 
+        if($this->modelUser->setRigths($id, $rights)) {
+            $this->after_change(1);
+        }
 
+        else {
+            $this->after_change(0);
+        }
     }
 
     public function delete_user() {
