@@ -71,14 +71,15 @@ class Controller
         }
     }
 
-    public function bla($a = null) {
-        if($a == null) {
-            echo "param null";
+    public function set_rights() {
+        if($this->modelUser == null) {
+            $this->modelUser = new UserModel();
         }
 
-        else {
-            echo $a;
-        }
+        $id = $_POST['id'];
+        $rights = $_POST['rights'];
+
+
     }
 
     public function delete_user() {

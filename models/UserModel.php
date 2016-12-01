@@ -93,8 +93,9 @@ class UserModel extends Model
     }
 
     public function selectUserByID($id) {
+        $id_esc = htmlspecialchars(stripslashes($id), ENT_QUOTES, 'UTF-8');
         $q = $this->db->prepare("SELECT * FROM `uzivatele` WHERE `id` = :id");
-        $q->bindParam(':id', htmlspecialchars(stripslashes($id), ENT_QUOTES, 'UTF-8'));
+        $q->bindParam(':id', $id_esc);
         $q->execute();
 
         if($q->rowCount() != 0) {
@@ -104,6 +105,16 @@ class UserModel extends Model
         else {
             return null;
         }
+    }
+
+    public function setRigths($id, $rights) {
+        $id_esc = htmlspecialchars(stripslashes($id), ENT_QUOTES, 'UTF-8');
+        $rights_esc = htmlspecialchars(stripslashes($rights), ENT_QUOTES, 'UTF-8');
+
+        $q = $this->db->prepare("UPDATE `uzivatele` SET `prava` = :prava WHERE `id` = :id");
+        $q->bindParam(":prava", $rights_esc);
+        $q->bindParam(":id", $id_esc);
+
     }
 
     public function deleteUser($id) {
